@@ -76,6 +76,21 @@ Regarding the structure of `train.csv`, it includes several columns:
 This dataset is particularly well-suited for this task due to its focus on NLP and its moderate size, allowing for experimentation with different models without requiring extensive computational resources. The inclusion of keywords and location data also provides the opportunity for feature engineering and the exploration of how additional metadata can support or enhance the performance of text classification models.
 
 ### Preprocessing
+The preprocessing stage of the dataset is critical to ensure that the machine-learning models function effectively, without interference from irrelevant or redundant data. In this phase, we have decided not to utilize the 'keyword' and 'location' columns for classification purposes. While these columns might offer additional context that could enhance predictions in a hybrid model, the focus remains solely on the tweet text for this analysis.
+
+Firstly, to prevent any leakage of training data into the test set, it was essential to scour the dataset for any duplicates. Upon inspection, 110 duplicate instances were discovered. To maintain the integrity of the data, only those duplicates that were consistent in their 'target' values were retained, effectively removing any potential contamination that could bias the models.
+
+Subsequently, a distinct training and a test set were established to segregate the data effectively. This division aims to avoid any inadvertent gain of information about the test set during the training phase.
+
+Further examination confirmed that no 'NA' values were present in the dataset, and due to the earlier removal of duplicates, there were no duplicate values left either. However, an imbalance was noted in the class distribution—there were unequal numbers of disaster and non-disaster tweets. This skewness necessitates careful consideration when choosing an evaluation metric to ensure it accurately reflects the models' performance.
+
+Analysis of the length of the tweets revealed that most contained between 10 to 20 words. Few tweets were longer than 30 words or shorter than 5 words, which may present challenges for the models as shorter tweets could lack sufficient information for accurate classification.
+
+In preparation for TF-IDF analysis, the tweets underwent further cleaning. Special HTML characters were converted to their corresponding correct characters, eliminating the risk of misinterpreting artifacts like "&amp" as valid words. All non-alpha characters such as hashtags, mentions, punctuation, conjunctions, etc., were stripped away, focusing analysis solely on the relevance of words themselves.
+
+Our TF-IDF model training involved refining the stopwords list. The built-in list was too narrow, failing to filter out many common stopwords, so a more extensive list from the internet was utilized. Additionally, accents were removed, and all words were converted to lowercase to prevent TF-IDF from misidentifying identical words due to case differences or diacritics.
+
+Notably, words that carry more negative connotations were found to be more relevant in tweets categorized as disasters, a pattern not observed in non-disaster tweets. This distinction might provide valuable insights into the characteristics that differentiate disaster tweets from their non-disaster counterparts.
 
 
 ### Feature Engineering
