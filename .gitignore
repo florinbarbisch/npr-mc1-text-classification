@@ -162,6 +162,5 @@ cython_debug/
 # DS Store
 .DS_Store
 
+# Shenanigans
 test_trainer/
-
-data/submissions/*
