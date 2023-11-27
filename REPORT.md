@@ -101,7 +101,7 @@ Stability in the evaluation was observed via both the accuracy and F1 score, whi
 
 The potential overfitting issue was hinted at by the considerable divergence between the rapidly decreasing training loss and the fluctuating pattern of the evaluation loss. This discrepancy raised concerns about the model's generalization capabilities, as it appeared to perform better on training data than on unseen evaluation data.
 
-Assessment results based on validation data reflected an accuracy rate close to 80% and an F1 score marginally above 75%, which, under ordinary circumstances, are marks of respectable performance for a text classification task. Yet for BERTweet, a model that is part of the advanced BERT family, such results were somewhat underwhelming, as higher performance was anticipated.
+Assessment results based on validation data reflected an accuracy rate close to 80% and an F1 score marginally above 77%, which, under ordinary circumstances, are marks of respectable performance for a text classification task. Yet for BERTweet, a model that is part of the advanced BERT family, such results were somewhat underwhelming, as higher performance was anticipated.
 
 The confusion matrix displayed a relatively balanced classification ability for both disaster and non-disaster tweets, with a comparable rate of misclassifications observed between the two categories. It sheds light on the types of errors made, suggesting possible biases or deficiencies in the model's understanding of contextual cues associated with disaster-related content.
 
