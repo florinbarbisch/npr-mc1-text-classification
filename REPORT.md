@@ -68,25 +68,28 @@ In conclusion, the SVM's comparative success in this use case prompts considerat
 ### Model 2: BERTweet
 BERT, short for "Bidirectional Encoder Representations from Transformers", represents a paradigm shift in natural language processing (NLP), developed by Google AI Language. The transformative feature of BERT is its ability to understand language context bidirectionally, meaning it can consider the context of each word in a dataset from left to right and vice versa. BERT utilizes the Transformer, an attention mechanism structure that captures the relationship between all words in a sentence, as opposed to previous models that analyzed words sequentially.
 
-Applications of BERT
+
+**Applications of BERT**
+
 BERT is designed to generate representations that can support a variety of NLP tasks, such as:
+- Text classification
+- Question answering
+- Named entity recognition
+- Text summarization
+- Language translation
+- Text similarity analysis
+- It is important to note that BERT in its basic form is not suitable for text generation tasks, as it does not include a dedicated decoder component.
 
-Text classification
-Question answering
-Named entity recognition
-Text summarization
-Language translation
-Text similarity analysis
-It is important to note that BERT in its basic form is not suitable for text generation tasks, as it does not include a dedicated decoder component.
 
-Specific Implementation: BERTweet
+**Specific Implementation: BERTweet**
+
 BERTweet is a BERT variant specifically developed for the analysis of English-language Twitter data. It is based on RoBERTa, a modification of BERT that surpasses BERT by optimizing some hyperparameters and using a different preprocessing method focused on dynamic masking. BERTweet understands tweets by recognizing language patterns from a massive dataset, making it an excellent candidate for classifying tweets in terms of catastrophic events.
 
 The BERTweet model is structured as follows:
 
-Embeddings: This area is responsible for converting words, positions, and token types into vectors. It uses word embeddings of size 64,001x768, position embeddings of size 130x768, and token-type embeddings of size 1x768. Layer normalization and dropout layers are used for model stability and to prevent overfitting.
+**Embeddings:** This area is responsible for converting words, positions, and token types into vectors. It uses word embeddings of size 64,001x768, position embeddings of size 130x768, and token-type embeddings of size 1x768. Layer normalization and dropout layers are used for model stability and to prevent overfitting.
 
-Encoder: This consists of a list of 12 RobertaLayer modules. Each RobertaLayer has an Attention layer (RobertaAttention), which in turn is composed of Query, Key, and Value layers. This is followed by an intermediate step (RobertaIntermediate) with a linear layer that expands the dimensions from 768 to 3072, and a GELU activation function. Finally, the result is reduced back to 768 dimensions by another linear layer (RobertaOutput).
+**Encoder:** This consists of a list of 12 RobertaLayer modules. Each RobertaLayer has an Attention layer (RobertaAttention), which in turn is composed of Query, Key, and Value layers. This is followed by an intermediate step (RobertaIntermediate) with a linear layer that expands the dimensions from 768 to 3072, and a GELU activation function. Finally, the result is reduced back to 768 dimensions by another linear layer (RobertaOutput).
 
 
 The model and various useful functions, such as the tokenizer, dataset-specific preprocessing methods, and the initial model architecture, were implemented and adapted using the transformers library by Hugging Face. Due to its pre-trained state on a large text corpus, BERTweet could be efficiently fine-tuned from general language understanding for the specific task of classifying tweets regarding their relevance to natural disasters.
@@ -113,25 +116,39 @@ To counterbalance these shortcomings and improve classification accuracy, future
 ### Method 3: CNN
 Exploring the use of Convolutional Neural Networks (CNNs) for text classification in natural language processing (NLP) tasks, like disaster tweet classification, presents an opportunity to evaluate the effectiveness of this architecture outside its conventional application in image processing. Despite the rise of Transformer-based models like BERT, which have gained preeminence in NLP, recent literature implies that CNNs can still be an integral component in this domain. To this end, our analysis delves into the application of one-dimensional CNNs (1D-CNNs) for distinguishing disaster tweets, aiming to exceed the performance benchmarks set by previous methods.
 
-Model Selection
+
+**Model Selection**
+
 Our decision to evaluate CNNs is grounded in recent research findings that continue to highlight the utility of CNNs in NLP. While there was an assumption that Transformer models had become the single go-to architecture for text data, our domain expert offered a different perspective, suggesting the enduring relevance of CNNs. A review of recent publications bolstered this view, suggesting a renewed interrogation into the application of CNNs for text classification tasks.
 
-Model Explanation
+
+**Model Explanation**
+
 The 1D-CNNs differ from their 2D counterparts by moving the filter across one dimension—corresponding to the sequential nature of text data—allowing the kernels to capture patterns in the succession of words. We used varying kernel sizes to examine the effect of capturing different range dependencies between words, alongside multiple convolution layers to deepen the model's feature extraction capabilities.
 
-Pre-Processing
+
+**Pre-Processing**
+
 Essential pre-processing steps involved vectorizing the tweet sentences, which transformed each unique word into a distinct dimensional vector set at orthogonal angles to one another. This high-dimensionality was then reduced using embedding techniques, where words with semantic similarities were placed closer together in a lower-dimensional vector space.
 
-Non-Pretrained Embeddings
+
+**Non-Pretrained Embeddings**
+
 In this study, we expressed words in a 30-dimension space using non-pretrained embeddings, allowing us to capture the semantic features relevant to our disaster classification task without the influence of an external corpus.
 
-Word2Vec Embeddings
+
+**Word2Vec Embeddings**
+
 Pretrained Word2Vec embeddings were also utilized, leveraging the model's understanding of word dependencies in a larger dataset to inform our classification. We chose the CBOW-trained Word2Vec model on Google News due to its demonstrated performance in the literature.
 
-Bert Tweet Embeddings
+
+**Bert Tweet Embeddings**
+
 Additionally, Bert Tweet embeddings, pretrained specifically on tweets, were tested. The model's subword tokenization allowed for a granular representation of tweet text, offering unique insights in understanding the intricacies of social media language.
 
-CNN Model Architecture
+
+**CNN Model Architecture**
+
 The first round of experiments used a 1D-CNN with a kernel size of 5 and 64 filters. Comparisons were made between non-pretrained embeddings, Word2Vec, and Bert Tweet embeddings, using binary cross-entropy as the loss function and a sigmoid activation in the output layer for binary classification.
 
 #### Results
