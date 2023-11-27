@@ -142,17 +142,17 @@ In this study, we expressed words in a 30-dimension space using non-pretrained e
 Pretrained Word2Vec embeddings were also utilized, leveraging the model's understanding of word dependencies in a larger dataset to inform our classification. We chose the CBOW-trained Word2Vec model on Google News due to its demonstrated performance in the literature.
 
 
-**Bert Tweet Embeddings**
+**BERTweet Embeddings**
 
-Additionally, Bert Tweet embeddings, pretrained specifically on tweets, were tested. The model's subword tokenization allowed for a granular representation of tweet text, offering unique insights in understanding the intricacies of social media language.
+Additionally, BERTweet embeddings, pretrained specifically on tweets, were tested. The model's subword tokenization allowed for a granular representation of tweet text, offering unique insights in understanding the intricacies of social media language.
 
 
 **CNN Model Architecture**
 
-The first round of experiments used a 1D-CNN with a kernel size of 5 and 64 filters. Comparisons were made between non-pretrained embeddings, Word2Vec, and Bert Tweet embeddings, using binary cross-entropy as the loss function and a sigmoid activation in the output layer for binary classification.
+The first round of experiments used a 1D-CNN with a kernel size of 5 and 64 filters. Comparisons were made between non-pretrained embeddings, Word2Vec, and BERTweet embeddings, using binary cross-entropy as the loss function and a sigmoid activation in the output layer for binary classification.
 
 #### Results
-Surprisingly, the CNN models that were applied to the task of classifying disaster tweets witnessed a nuanced performance advantage when incorporating Word2Vec embeddings over models that relied on non-pretrained embeddings. This was unexpected, especially considering that the models with Bert Tweet embeddings, which were pretrained on domain-specific data, were anticipated to have the upper hand. The minimal outperformance of Word2Vec underscores the sometimes unpredictable nature of model efficacy, given that prior assumptions favored the domain-specific Bert embeddings.
+Surprisingly, the CNN models that were applied to the task of classifying disaster tweets witnessed a nuanced performance advantage when incorporating Word2Vec embeddings over models that relied on non-pretrained embeddings. This was unexpected, especially considering that the models with BERTweet embeddings, which were pretrained on domain-specific data, were anticipated to have the upper hand. However, the domain-specific data might not be domain specific enough compared to our use-case, since BERTweet was trained on english tweets in general but not on disaster related tweets. The minimal outperformance of Word2Vec underscores the sometimes unpredictable nature of model efficacy, given that prior assumptions favored the domain-specific Bert embeddings.
 
 A consistent pattern of misclassification across different models and embedding techniques surfaced, signaling the presence of fundamental issues inherent in the text data itself. Rather than reflecting problems with the models or embedding methods, these recurrent errors speak to the inherent challenges of text classification, suggesting that issues might lie with ambiguous language use, context, or nuances such as irony and sarcasm in the dataset.
 
@@ -230,7 +230,7 @@ The SVM, when paired with TF-IDF, yielded a slight improvement over the HGBC mod
 
 BERTweet, despite its advanced architecture, did not fulfill the high expectations set for it, with evaluation metrics suggesting an overfitting tendency and challenges in generalizing its learning to unseen data. The TF-IDF with HGBC model, while strong in accuracy and F1 score, exhibited a vulnerability to misclassifying tweets with non-disaster-related sarcastic or dramatic language as disasters. This model also demonstrated an overemphasis on certain keywords for classification decisions.
 
-On the other hand, the CNN models with Word2Vec embeddings revealed an unexpected edge over those with supposedly superior Bert Tweet embeddings. This suggested that, in some cases, the ability of a model to generalize might not be significantly enhanced with domain-specific pretraining. However, architectural complexities in the CNN did not guarantee better performance, with simpler designs sometimes proving more effective.
+On the other hand, the CNN models with Word2Vec embeddings revealed an unexpected edge over those with supposedly superior BERTweet embeddings. This suggested that, in some cases, the ability of a model to generalize might not be significantly enhanced with domain-specific pretraining. However, architectural complexities in the CNN did not guarantee better performance, with simpler designs sometimes proving more effective.
 
 From the results, it is evident that none of the models completely mastered the task at hand, with each facing similar issues regarding the interpretation of context, the variability in language use, and the identification of subtle linguistic nuances. This significant insight highlights the need for a balanced approach that combines the strengths of different models and possibly leverages additional contextual information to improve the classification of disaster-related content on Twitter. The results collectively underscore the importance of feature representation and the potential benefit of model ensembles or hybrid approaches to mitigate individual model weaknesses.
 
