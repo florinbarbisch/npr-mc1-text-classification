@@ -164,3 +164,14 @@ cython_debug/
 
 # Shenanigans
 test_trainer/
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+REPORT.pdf
+*.run.xml
+*.synctex*
+*.toc
+*.out
