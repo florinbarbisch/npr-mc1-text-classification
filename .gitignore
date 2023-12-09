@@ -170,7 +170,6 @@ test_trainer/
 *.blg
 *.fdb_latexmk
 *.fls
-REPORT.pdf
 *.run.xml
 *.synctex*
 *.toc
