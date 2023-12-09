@@ -223,6 +223,68 @@ The Confusion Matrix is imperative in understanding the types and quantities of 
 
 Together, these metrics form a comprehensive framework for evaluating the performance of different models on the task of disaster tweet classification.
 
+### Results Comparison
+
+#### Quantitative Results
+
+| TF-IDF HGBC     | no disaster | disaster |
+|-----------------|-------------|----------|
+| **no disaster** | 761         | 88       |
+| **disaster**    | 228         | 420      |
+
+
+| TF-IDF SVM      | no disaster | disaster |
+|-----------------|-------------|----------|
+| **no disaster** | 789         | 60       |
+| **disaster**    | 229         | 419      |
+
+| BERTweet        | no disaster | disaster |
+|-----------------|-------------|----------|
+| **no disaster** | 695         | 154      |
+| **disaster**    | 148         | 500      |
+
+
+| CNN             | no disaster | disaster |
+|-----------------|-------------|----------|
+| **no disaster** | 688         | 161      |
+| **disaster**    | 170         | 478      |
+
+
+
+| Model        | Accuracy | Precision | Recall | F1 Score |
+|--------------|----------|-----------|--------|----------|
+| TF-IDF HGBC  | 78.89%   | 82.68%    | 64.81% | 72.66%   |
+| TF-IDF SVM   | 80.69%   | 87.47%    | 64.66% | 74.36%   |
+| BERTweet     | 79.83%   | 76.45%    | 77.16% | 76.80%   |
+| CNN          | 77.89%   | 74.80%    | 73.77% | 74.28%   |
+
+
+
+| Model          | First Degree Error | Second Degree Error |
+|----------------|--------------------|---------------------|
+| TF-IDF HGBC    | 88                 | 228                 |
+| TF-IDF SVM     | 60                 | 229                 |
+| BERTweet       | 154                | 148                 |
+| CNN            | 161                | 170                 |
+
+
+#### Qualitative Results
+| tweet | label | BERTweet | HGBC | SVM | CNN |
+|-------|-------|----------|------|-----|-----|
+| she's a natural disaster she's the last of the American girls ?? | no disaster | disaster | no disaster | no disaster | no disaster |
+| "In your eyes I see the hope I once knew. I'm sinking. I'm sinking away from you. Don't turn around you'll see... You can make it." | no disaster | disaster | no disaster | no disaster | no disaster |
+| 13 reasons why we love women in the military - lulgzimbestpicts http://t.co/XKMLQ99SjY http://t.co/a3RGQuCUgo | no disaster | disaster | no disaster | no disaster | no disaster |
+| E-Hutch is da bomb ?? http://t.co/aqmpxzo3V1 | no disaster | no disaster | no disaster | no disaster | disaster |
+| They turned Jasmines house into a war zone. ?? #LittleWomenLA | no disaster | disaster | no disaster | no disaster | no disaster |
+| Neil_Eastwood77: I AM A KNOBHEAD!! Bin Laden family plane crashed after 'avoiding microlight and landing t... Û_ http://t.co/dUVUzhMVUT | disaster | no disaster | disaster | disaster | disaster |
+| Rt hirochii0: There is no country that making fun of Hiroshima 's tragedy but Korea. http://t.co/And1Btizao #Indonesia #Malaysia #Jamaica #Û_ | disaster | no disaster | disaster | disaster | disaster |
+| @eeenice221 true because of the truck that caught fire? | disaster | disaster | no disaster | no disaster | disaster |
+| @KurtSchlichter He's already done it by negotiating with the #1 state of terrorism in the World. What was his hurry in trying to get a deal | disaster | no disaster | no disaster | no disaster | disaster |
+| My baby girls car wreak this afternoon thank God no serious injuries and she was wearing her seatbelt!!!... http://t.co/NJQV45ndS2 | disaster | no disaster | no disaster | no disaster | no disaster |
+
+
+
+
 ### Results Discussion
 The comparative evaluation of the machine learning methods showcased a spectrum of performances influenced by various factors inherent to each model's architecture and the nature of the dataset. Each model brought unique strengths and weaknesses to bear upon the classification task.
 
