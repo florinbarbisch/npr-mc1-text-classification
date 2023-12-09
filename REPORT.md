@@ -249,8 +249,6 @@ Together, these metrics form a comprehensive framework for evaluating the perfor
 | **no disaster** | 688         | 161      |
 | **disaster**    | 170         | 478      |
 
-
-
 | Model        | Accuracy | Precision | Recall | F1 Score |
 |--------------|----------|-----------|--------|----------|
 | TF-IDF HGBC  | 78.89%   | 82.68%    | 64.81% | 72.66%   |
@@ -267,6 +265,15 @@ Together, these metrics form a comprehensive framework for evaluating the perfor
 | BERTweet       | 154                | 148                 |
 | CNN            | 161                | 170                 |
 
+Across the four models evaluated, the TF-IDF SVM outperformed others in terms of accuracy, boasting an impressive 80.69%. It also yielded the highest precision; however, all models showed comparable recall rates, with BERTweet leading slightly at 77.16%. When it came to the F1 Score, which balances precision and recall, TF-IDF SVM maintained its superiority with 74.36%, followed closely by BERTweet.
+
+In terms of errors, the TF-IDF SVM model demonstrated a notable advantage in minimizing first-degree errors, with only 60 misclassifications of non-disaster tweets as disaster tweets. Interestingly, BERTweet and CNN grappled with a higher number of first-degree errors, possibly indicating a tendency toward higher recall at the cost of precision.
+
+BERTweet, while excelling in recall, manifested a balanced error profile with relatively equal first and second-degree errors. This suggests an equilibrium between the types of misclassifications, which may reduce bias towards either class.
+
+On the other hand, CNN experienced the highest number of second-degree errors, which implies that it was more conservative in predicting the disaster class and consequently mislabelled a notable number of disaster tweets as non-disaster.
+
+Overall, while each model has its strengths, the TF-IDF SVM emerged as the most robust, with the highest accuracy and F1 Score, coupled with the lowest first-degree error count, revealing a strong capacity for balanced classification in this dataset.
 
 #### Qualitative Results
 | tweet | label | BERTweet | HGBC | SVM | CNN |
@@ -282,7 +289,17 @@ Together, these metrics form a comprehensive framework for evaluating the perfor
 | @KurtSchlichter He's already done it by negotiating with the #1 state of terrorism in the World. What was his hurry in trying to get a deal | disaster | no disaster | no disaster | no disaster | disaster |
 | My baby girls car wreak this afternoon thank God no serious injuries and she was wearing her seatbelt!!!... http://t.co/NJQV45ndS2 | disaster | no disaster | no disaster | no disaster | no disaster |
 
+In the qualitative analysis of our models' misclassifications, several patterns emerge that provide insights into where and why each algorithm stumbles. 
 
+For instance, BERTweet misclassified tweets containing the phrases "natural disaster" and "war zone" despite these not referring to actual disasters. This suggests that BERTweet may heavily weigh specific keywords without enough context consideration. Phrases common in discussions around disasters, like "sinking away from you," were also mistaken as disaster-related, which implies BERTweet could be overfitting to disaster-specific language.
+
+Conversely, CNN erred in classifying a tweet mentioning "da bomb" as a disaster. This could suggest that CNN has a tendency to misinterpret urban slang or colloquial expressions, possibly due to a lack of representative training data capturing these linguistic nuances. 
+
+Across all models, the tweet about Bin Laden's family plane crash was correctly identified as a disaster, confirming that models have learned to associate such keywords with the disaster class effectively. However, the failure of BERTweet and other models to recognize a tweet jokingly self-deprecating as a "KNOBHEAD" as a non-disaster indicates that models may not differentiate sarcasm or self-deprecatory humor well.
+
+Another profound misclassification involves a tweet expressing gratitude for safety after a car wreck. All models, except CNN, failed to classify it as a disaster, possibly because the broader context conveys a sense of relief rather than the occurrence of a disaster. This could reflect a gap in the models' grasp of deeper semantic meanings and the emotional undertones of the text.
+
+These qualitative observations underline the need for models to not only recognize disaster-specific keywords but also to contextualize language more effectively, accounting for sarcasm, idiomatic expressions, and sentiment to reduce misclassification rates. These factors play into the nuanced understanding of human language and present fruitful avenues for model improvement.
 
 
 ### Results Discussion
