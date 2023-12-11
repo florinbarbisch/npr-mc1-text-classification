@@ -96,7 +96,7 @@
             
        \vspace{1.5cm}
 
-       Jan Zwicky, Gabriel Gamez Torres, Florin Barbisch
+       Jan Zwicky, Gabriel Torres Gamez, Florin Barbisch
 
        \vfill
       
@@ -153,9 +153,9 @@ Examples of such cases were where sarcastic or off-topic replies were incorrectl
 
 When subjecting the model to validation data, the accuracy and F1 scores fell to 0.789 and 0.777, respectively. Nonetheless, these results remain praiseworthy for a validation dataset, hinting at the model's robust generalization capabilities. Second-degree errors were less frequent in this setting, though the absence of broader conversational context in certain replies still posed classification challenges.
 
-First-degree errors were also observed, where the model misinterpreted the gravity of specific terms within a tweet. For example, "Crash" in an educational context or "Storm" in casual conversation were instances where the model faltered, selecting the disaster category when it was unwarranted.
+First-degree errors were also observed, where the model misinterpreted the gravity of specific terms within a tweet. For example, \enquote{Crash} in an educational context or \enquote{Storm} in casual conversation were instances where the model faltered, selecting the disaster category when it was unwarranted.
 
-The insight into feature relevance was gained through Permutation Importance, revealing that certain words, after stemming and lemmatization, were pivotal in decision-making. The direct feature relevance incorporating the IDF values confirmed the strong influence of disaster-related words on classification outcomes. However, the significance of non-disaster-specific words like "you," "in," and "i" highlighted a potential disproportion in the dataset's size or composition.
+The insight into feature relevance was gained through Permutation Importance, revealing that certain words, after stemming and lemmatization, were pivotal in decision-making. The direct feature relevance incorporating the IDF values confirmed the strong influence of disaster-related words on classification outcomes. However, the significance of non-disaster-specific words like \enquote{you,} \enquote{in,} and \enquote{i} highlighted a potential disproportion in the dataset's size or composition.
 
 Further analysis revealed that if a sentence included words with strong disaster relevance, the propensity for it to be categorized as a disaster tweet increased, potentially overshadowing the context in which these words were used. This detection raises concerns about the model's sensitivity to such terms and the need for more nuanced feature engineering to improve classification accuracy without relying overtly on specific keywords. Moreover, the disproportionate weighting on common words suggests potential overrepresentation of particular expressions in the dataset, which may need to be addressed through further data balancing or preprocessing measures.
 
@@ -173,7 +173,7 @@ It's intriguing to note that the SVM, while inherently different in methodology 
 In conclusion, the SVM's comparative success in this use case prompts consideration for its adoption, given its relatively straightforward implementation, computational efficiency, and notable accuracy.
 
 \subsection{Model 2: BERTweet}
-BERT, short for "Bidirectional Encoder Representations from Transformers", represents a paradigm shift in natural language processing (NLP), developed by Google AI Language. The transformative feature of BERT is its ability to understand language context bidirectionally, meaning it can consider the context of each word in a dataset from left to right and vice versa. BERT utilizes the Transformer, an attention mechanism structure that captures the relationship between all words in a sentence, as opposed to previous models that analyzed words sequentially.
+BERT, short for \enquote{Bidirectional Encoder Representations from Transformers}, represents a paradigm shift in natural language processing (NLP), developed by Google AI Language. The transformative feature of BERT is its ability to understand language context bidirectionally, meaning it can consider the context of each word in a dataset from left to right and vice versa. BERT utilizes the Transformer, an attention mechanism structure that captures the relationship between all words in a sentence, as opposed to previous models that analyzed words sequentially.
 
 
 \textbf{Applications of BERT}
@@ -274,7 +274,7 @@ In summation, the experiment utilizing CNNs for the classification of disaster t
 
 
 \subsection{Dataset}
-The dataset used for the evaluation of the machine-learning methods comes from a Kaggle competition titled "Natural Language Processing with Disaster Tweets". It was designed to provide a gateway for data scientists entering the field of Natural Language Processing (NLP). 
+The dataset used for the evaluation of the machine-learning methods comes from a Kaggle competition titled \enquote{Natural Language Processing with Disaster Tweets}. It was designed to provide a gateway for data scientists entering the field of Natural Language Processing (NLP). 
 
 The dataset comprises 10,000 tweets that have been manually classified into two categories: tweets that are about real disasters and tweets that are not. The competition is tailored for models that can distinguish between tweets that describe actual emergency situations from those that do not, even if disaster-related terminology is present. 
 
@@ -432,7 +432,7 @@ Overall, while each model has its strengths, the TF-IDF SVM emerged as the most 
     \hline
     \textbf{tweet} & \textbf{label} & \textbf{BERTweet} & \textbf{HGBC} & \textbf{SVM} & \textbf{CNN} \\ \hline
     she's a natural disaster she's the last of the American girls ?? & no disaster & disaster & no disaster & no disaster & no disaster \\ \hline
-    "In your eyes I see the hope I once knew. I'm sinking. I'm sinking away from you. Don't turn around you'll see... You can make it." & no disaster & disaster & no disaster & no disaster & no disaster \\ \hline
+    In your eyes I see the hope I once knew. I'm sinking. I'm sinking away from you. Don't turn around you'll see... You can make it. & no disaster & disaster & no disaster & no disaster & no disaster \\ \hline
     13 reasons why we love women in the military - lulgzimbestpicts \url{http://t.co/XKMLQ99SjY} \url{http://t.co/a3RGQuCUgo} & no disaster & disaster & no disaster & no disaster & no disaster \\ \hline
     E-Hutch is da bomb ?? \url{http://t.co/aqmpxzo3V1} & no disaster & no disaster & no disaster & no disaster & disaster \\ \hline
     They turned Jasmines house into a war zone. ?? \#LittleWomenLA & no disaster & disaster & no disaster & no disaster & no disaster \\ \hline
@@ -448,11 +448,11 @@ Overall, while each model has its strengths, the TF-IDF SVM emerged as the most 
 
 In the qualitative analysis of our models' misclassifications, several patterns emerge that provide insights into where and why each algorithm stumbles. 
 
-For instance, BERTweet misclassified tweets containing the phrases "natural disaster" and "war zone" despite these not referring to actual disasters. This suggests that BERTweet may heavily weigh specific keywords without enough context consideration. Phrases common in discussions around disasters, like "sinking away from you," were also mistaken as disaster-related, which implies BERTweet could be overfitting to disaster-specific language.
+For instance, BERTweet misclassified tweets containing the phrases \enquote{natural disaster} and \enquote{war zone} despite these not referring to actual disasters. This suggests that BERTweet may heavily weigh specific keywords without enough context consideration. Phrases common in discussions around disasters, like \enquote{sinking away from you,} were also mistaken as disaster-related, which implies BERTweet could be overfitting to disaster-specific language.
 
-Conversely, CNN erred in classifying a tweet mentioning "da bomb" as a disaster. This could suggest that CNN has a tendency to misinterpret urban slang or colloquial expressions, possibly due to a lack of representative training data capturing these linguistic nuances. 
+Conversely, CNN erred in classifying a tweet mentioning \enquote{da bomb} as a disaster. This could suggest that CNN has a tendency to misinterpret urban slang or colloquial expressions, possibly due to a lack of representative training data capturing these linguistic nuances. 
 
-Across all models, the tweet about Bin Laden's family plane crash was correctly identified as a disaster, confirming that models have learned to associate such keywords with the disaster class effectively. However, the failure of BERTweet and other models to recognize a tweet jokingly self-deprecating as a "KNOBHEAD" as a non-disaster indicates that models may not differentiate sarcasm or self-deprecatory humor well.
+Across all models, the tweet about Bin Laden's family plane crash was correctly identified as a disaster, confirming that models have learned to associate such keywords with the disaster class effectively. However, the failure of BERTweet and other models to recognize a tweet jokingly self-deprecating as a \enquote{KNOBHEAD} as a non-disaster indicates that models may not differentiate sarcasm or self-deprecatory humor well.
 
 Another profound misclassification involves a tweet expressing gratitude for safety after a car wreck. All models, except CNN, failed to classify it as a disaster, possibly because the broader context conveys a sense of relief rather than the occurrence of a disaster. This could reflect a gap in the models' grasp of deeper semantic meanings and the emotional undertones of the text.
 
